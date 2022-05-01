@@ -40,8 +40,8 @@ class Main extends Component {
                     <Route path="/resume" component={Resume}/>
                     <Route path="/personality" component={Personality}/>
                 </div>
-
             </div>
+            <script src="game/game.js"></script> 
             </HashRouter>
         );
     }
