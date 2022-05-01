@@ -1,13 +1,15 @@
 
 // main component to manage content
 
+// module imports
 import React, { Component } from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 
-import Tuis from './pages/Tuis';
-import Inligting from './pages/Inligting';
-import Kontak from './pages/Kontak';
-import Fotos from './pages/Fotos';
+// code imports
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import Resume from './pages/Resume';
+import Personality from './pages/Personality';
 
 
 class Main extends Component {
@@ -15,28 +17,28 @@ class Main extends Component {
         return(
             <HashRouter>
             <div>
-                <h1>Portfolio website aia</h1>
+                <h1>Header wat heeltyd dieselle bly</h1>
                 <ul>
                     <li>
-                        <NavLink exact to="/" >Tuis</NavLink>                                                                                                                                                                                                                              
+                        <NavLink exact to="/" >home</NavLink>                                                                                                                                                                                                                              
                     </li>
                     <li>
-                        <NavLink to="/inligting" >Inligting</NavLink>                                                                                                                                                                                                                              
+                        <NavLink to="/projects" >projects</NavLink>                                                                                                                                                                                                                              
                     </li>
                     <li>
-                        <NavLink to="/kontak" >Kontak Ons</NavLink>                                                                                                                                                                                                                              
+                        <NavLink to="/resume" >resume</NavLink>                                                                                                                                                                                                                              
                     </li>
                     <li>
-                        <NavLink to="/fotos" >Fotos</NavLink>                                                                                                                                                                                                                              
+                        <NavLink to="/personality" >soft skills & hobbies</NavLink>                                                                                                                                                                                                                              
                     </li>
                 </ul>
 
                 {/* Render non static content here */}
                 <div className="content">
-                    <Route exact path="/" component={Tuis}/>
-                    <Route path="/inligting" component={Inligting}/>
-                    <Route path="/kontak" component={Kontak}/>
-                    <Route path="/fotos" component={Fotos}/>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/projects" component={Projects}/>
+                    <Route path="/resume" component={Resume}/>
+                    <Route path="/personality" component={Personality}/>
                 </div>
 
             </div>
