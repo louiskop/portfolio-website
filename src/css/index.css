@@ -1,6 +1,10 @@
 
 /* main css file */
 
+body{
+    margin: 0;
+}
+
 .active{
     color: Green;
 }
