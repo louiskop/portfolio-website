@@ -5,9 +5,11 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-// change canvas size
+// change canvas size and make vars for easy sizing
 canvas.width = window.innerWidth;
 canvas.height = 300;
+const percWidth = window.innerWidth/100;
+const perHeight = window.innerHeight/100;
 
 // keys to monitor for input
 let keys = {
@@ -17,8 +19,10 @@ let keys = {
     down: false,
 };
 let jumpCount = 0;
+let cooldown = 0;
 let alreadyJumping = false;
 let platformStand = true;
+let socialID;
 
 // player class
 class Player {
@@ -82,12 +86,52 @@ class Platform {
 
 }
 
-// create player and platforms
+// social link class
+class Link {
+
+    constructor(link, image, x){
+        this.link = link
+        this.image = image,
+    
+        this.width = 30;
+        this.height = 30;
+
+        this.position = {
+            x: x,
+            y: 230,
+        }
+    }
+
+    draw() {
+        c.fillStyle = "#00FF00";
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+
+}
+
+
+
+// create player and platforms and links
 const player = new Player(4);
 player.update();
-const platforms = [new Platform(0, 200), new Platform(300, 50)];
+
+const platforms = [new Platform(0, percWidth*10),
+                   new Platform(percWidth*10+percWidth*8, percWidth*10),
+                   new Platform(percWidth*10+percWidth*8+percWidth*10+percWidth*8, percWidth*10),
+                   new Platform(percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8, percWidth*10),
+                   new Platform(percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8, percWidth*10),
+                   new Platform(percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8+percWidth*10+percWidth*8, percWidth*10)
+                ];
 platforms.forEach((platform) => {platform.draw()});
 
+const links = [new Link("https://github.com/louiskop", 0, (percWidth*10+percWidth*8+percWidth*5) - 30/2),
+               new Link("LinkedIn", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10) - 30/2),
+               new Link("Twitter", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*8+percWidth*10) - 30/2),
+               new Link("https://www.instagram.com/louis_dejager/", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*16+percWidth*20) - 30/2),
+            ];
+links.forEach((link) => {link.draw()});
+
+// check collisions for platforms
 function platformCollision(){
 
     platformStand = false;
@@ -110,6 +154,29 @@ function platformCollision(){
 }
 
 
+// check collisions on links
+function socialCollision(){
+
+    let collided = false;
+
+    links.forEach((link) => {
+
+        if(collided){
+            return;
+        }
+
+        if(player.position.x + player.width >= link.position.x && player.position.x <= link.position.x + link.width && player.position.y + player.height >= link.position.y){
+            socialID = link;
+            collided = true;
+        }
+    });
+
+    // return die variable
+    return collided;
+
+}
+
+
 // main game loop
 function animate(){
     
@@ -119,9 +186,10 @@ function animate(){
     // clear the canvas
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    // update player and platforms
+    // update player and platforms and links
     player.update();
     platforms.forEach((platform) => {platform.draw()});
+    links.forEach((link) => {link.draw()});
 
     // collision checking and gravity
     platformCollision();
@@ -171,13 +239,31 @@ function animate(){
         player.velocity.x = 0;
     }
 
-    // // check for socials
-    // if(keys.down){
-    //     // check if on social and visit that social
-    // }
+    // check for socials
+    if(socialCollision()){
+        // show the thing in the variable
+        cooldown++;
+        // check if opened
+        if(keys.down && socialID != null && cooldown > 50){
+            window.open(socialID.link, '_blank').focus();
+            cooldown = 0;
+        }
+    }
+
 
 
     // check if player is out of bounds (respawn)
+    if(player.position.y > canvas.height){
+        player.position.y = 20;
+        player.position.x = 20;
+    }
+
+    if(player.position.x > window.innerWidth){
+        player.position.x = 0;
+    }
+    if(player.position.x < 0){
+        player.position.x = window.innerWidth;
+    }
 
 }
 
@@ -217,6 +303,13 @@ window.addEventListener('keyup', ({keyCode}) => {
         // jump (38)
         case 38: keys.up = false; break;
 
+        // down (40)
+        case 40: keys.down = false; break;
+
     } 
 })
 
+
+// TODO: fix bug where windows open like crazy
+// TODO: convert all pixel values to multiples of the innerWidth!!
+// TODO: fix collision bugs under the platforms (sidecollision?)
