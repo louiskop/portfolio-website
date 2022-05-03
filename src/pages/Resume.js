@@ -10,7 +10,7 @@ import React, { Component } from "react";
 class Resume extends Component{
     render(){
         return(
-            <div>
+            <div className="page">
                 <h1>more than just a big talker ...</h1>
                 <h3>Hierdie is jou volle cv met 'n link vir download</h3>
             </div>

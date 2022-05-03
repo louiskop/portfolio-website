@@ -10,7 +10,7 @@ import React, { Component } from "react";
 class Projects extends Component {
     render(){
         return(
-            <div>
+            <div className="page">
                 <h1>more than just a website ...</h1>
                 <h3>'n djas viewer van my projects</h3>
             </div>

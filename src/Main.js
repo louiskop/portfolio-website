@@ -17,7 +17,8 @@ class Main extends Component {
         return(
             <HashRouter>
             <div>
-                <h1>Header wat heeltyd dieselle bly</h1>
+                <div className="header">
+                <p>Louis de Jager</p>
                 <ul>
                     <li>
                         <NavLink exact to="/" >home</NavLink>                                                                                                                                                                                                                              
@@ -32,7 +33,7 @@ class Main extends Component {
                         <NavLink to="/personality" >soft skills & hobbies</NavLink>                                                                                                                                                                                                                              
                     </li>
                 </ul>
-
+                </div>
                 {/* Render non static content here */}
                 <div className="content">
                     <Route exact path="/" component={Home}/>

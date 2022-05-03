@@ -142,7 +142,7 @@ function platformCollision(){
             return;
         }
 
-        if (player.position.y + player.height >= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width ){
+        if (player.position.y + player.height == platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width ){
             // player is standing on a platform
             platformStand = true;
             player.velocity.y = 0;
@@ -246,6 +246,7 @@ function animate(){
         // check if opened
         if(keys.down && socialID != null && cooldown > 50){
             window.open(socialID.link, '_blank').focus();
+            keys.down = false;
             cooldown = 0;
         }
     }
@@ -266,7 +267,6 @@ function animate(){
     }
 
 }
-
 // Unit tests and function run
 animate();
 
@@ -304,12 +304,10 @@ window.addEventListener('keyup', ({keyCode}) => {
         case 38: keys.up = false; break;
 
         // down (40)
-        case 40: keys.down = false; break;
+        case 40: keys.down = false; console.log("HOS DIE LOGIC WERK DARM"); break;
 
     } 
 })
 
 
-// TODO: fix bug where windows open like crazy
-// TODO: convert all pixel values to multiples of the innerWidth!!
-// TODO: fix collision bugs under the platforms (sidecollision?)
+// TODO: convert all pixel values to multiples of the innerWidth at final resizing and positioning

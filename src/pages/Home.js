@@ -10,7 +10,7 @@ import React, { Component } from "react";
 class Home extends Component {
     render() {
         return(
-            <div>
+            <div className="page">
                 <h1>more than just a programmer ...</h1>
                 <h3>short description van wat klap en 'n foto</h3>
             </div>

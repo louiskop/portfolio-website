@@ -1,10 +1,70 @@
 
 /* main css file */
 
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400&display=swap');
+
+/* index css */
 body{
     margin: 0;
+    padding: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    font-family: 'Playfair Display', serif;
+}
+
+#root {
+
+}
+
+canvas {
+    justify-self: center;
+    align-self: end;
+}
+
+/* header css */
+.header{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.header p{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    align-self: start;
+    justify-self: center;
+    font-size: 0.9rem;
+}
+
+.header ul{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    align-self: start;
+    justify-self: start;
+    padding: 0;
+}
+
+/* navbar css */
+
+.header ul{
+    list-style: none;
+}
+
+.header ul li a{
+    text-decoration: none;
 }
 
 .active{
     color: Green;
+}
+
+/* content css */
+.page{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.page h1{
+    justify-self: center;
 }
