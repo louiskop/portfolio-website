@@ -68,3 +68,15 @@ canvas {
 .page h1{
     justify-self: center;
 }
+
+/* home page css */
+#me {
+    height: 100vh;
+    justify-self: center;
+}
+
+.page p {
+    justify-self: center;
+    padding: 0;
+    margin:0;
+}

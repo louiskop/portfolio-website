@@ -2,20 +2,19 @@
 // projects page
 
 // module imports
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 // code imports
 //
 
-class Projects extends Component {
-    render(){
-        return(
-            <div className="page">
-                <h1>more than just a website ...</h1>
-                <h3>'n djas viewer van my projects</h3>
-            </div>
-        );
-    }
+function Projects() {
+
+    return(
+        <div className="page">
+            <h1>more than just a website ...</h1>
+            <h3>'n djas viewer van my projects</h3>
+        </div>
+    );
 }
 
 export default Projects;
