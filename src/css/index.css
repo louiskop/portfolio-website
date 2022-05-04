@@ -8,10 +8,21 @@
 body{
     margin: 0;
     padding: 0;
-    display: grid;
     height: 100vh;
-    grid-template-columns: 1fr;
     font-family: 'Playfair Display', serif;
+}
+
+
+.fixed{
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        display: grid;
+        grid-template-columns: 1fr;
+}
+
+.empty{
+    height: 600vh;
 }
 
 #root {

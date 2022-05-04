@@ -7,7 +7,7 @@ const c = canvas.getContext('2d');
 
 // change canvas size and make vars for easy sizing
 canvas.width = window.innerWidth;
-canvas.height = 300;
+canvas.height = window.innerHeight/3.6;
 const percWidth = window.innerWidth/100;
 const perHeight = window.innerHeight/100;
 
@@ -31,12 +31,12 @@ class Player {
 
         this.image = image;
 
-        this.width = 50;
-        this.height = 50;
+        this.width = window.innerHeight/21.6;
+        this.height = window.innerHeight/21.6;
             
         this.position = {
-            x : 20,
-            y : 20
+            x : window.innerWidth/96,
+            y : window.innerHeight/54
         }
 
         this.velocity = {
@@ -70,11 +70,11 @@ class Platform {
     constructor(x, width){
     
         this.width = width;
-        this.height = 20;
+        this.height = window.innerHeight/54;
 
         this.position = {
             x : x,
-            y : 280,
+            y : canvas.height - this.height,
         }
     }
 
@@ -93,12 +93,12 @@ class Link {
         this.link = link
         this.image = image,
     
-        this.width = 30;
-        this.height = 30;
+        this.width = window.innerHeight/36;
+        this.height = window.innerHeight/36;
 
         this.position = {
             x: x,
-            y: 230,
+            y: canvas.height - window.innerHeight/54 - window.innerHeight/21.6,
         }
     }
 
@@ -124,10 +124,10 @@ const platforms = [new Platform(0, percWidth*10),
                 ];
 platforms.forEach((platform) => {platform.draw()});
 
-const links = [new Link("https://github.com/louiskop", 0, (percWidth*10+percWidth*8+percWidth*5) - 30/2),
-               new Link("LinkedIn", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10) - 30/2),
-               new Link("Twitter", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*8+percWidth*10) - 30/2),
-               new Link("https://www.instagram.com/louis_dejager/", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*16+percWidth*20) - 30/2),
+const links = [new Link("https://github.com/louiskop", 0, (percWidth*10+percWidth*8+percWidth*5) - (window.innerHeight/36)/2),
+               new Link("LinkedIn", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10) - (window.innerHeight/36)/2),
+               new Link("Twitter", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*8+percWidth*10) - (window.innerHeight/36)/2),
+               new Link("https://www.instagram.com/louis_dejager/", 0, (percWidth*10+percWidth*8+percWidth*5+percWidth*8+percWidth*10+percWidth*16+percWidth*20) - (window.innerHeight/36)/2),
             ];
 links.forEach((link) => {link.draw()});
 
@@ -142,9 +142,10 @@ function platformCollision(){
             return;
         }
 
-        if (player.position.y + player.height == platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width ){
+        if (player.position.y + player.height >= platform.position.y && player.position.y + player.height <= platform.position.y + 7 && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width ){
             // player is standing on a platform
             platformStand = true;
+            player.position.y = platform.position.y - player.height;
             player.velocity.y = 0;
         }else {
             platformStand = false;
@@ -244,7 +245,7 @@ function animate(){
         // show the thing in the variable
         cooldown++;
         // check if opened
-        if(keys.down && socialID != null && cooldown > 50){
+        if(keys.down && socialID != null && cooldown > 50 && !keys.left && !keys.right){
             window.open(socialID.link, '_blank').focus();
             keys.down = false;
             cooldown = 0;
@@ -255,8 +256,10 @@ function animate(){
 
     // check if player is out of bounds (respawn)
     if(player.position.y > canvas.height){
-        player.position.y = 20;
-        player.position.x = 20;
+        player.position = {
+            x : window.innerWidth/96,
+            y : window.innerHeight/54
+        }
     }
 
     if(player.position.x > window.innerWidth){
@@ -271,21 +274,21 @@ function animate(){
 animate();
 
 // event listeners 
-window.addEventListener('keydown', ({keyCode}) => {
+window.addEventListener('keydown', (e) => {
 
-    switch(keyCode){
+    switch(e.keyCode){
 
         // move right (39)
-        case 39: keys.right = true; break;
+        case 39: keys.right = true; e.preventDefault(); break;
 
         // move left (37)
-        case 37: keys.left = true; break;
+        case 37: keys.left = true; e.preventDefault(); break;
 
         // jump (38)
-        case 38: keys.up = true; break;
+        case 38: keys.up = true; e.preventDefault(); break;
 
         // down (40)
-        case 40: keys.down = true; break;
+        case 40: keys.down = true; e.preventDefault(); break;
 
     } 
 })
@@ -304,10 +307,7 @@ window.addEventListener('keyup', ({keyCode}) => {
         case 38: keys.up = false; break;
 
         // down (40)
-        case 40: keys.down = false; console.log("HOS DIE LOGIC WERK DARM"); break;
+        case 40: keys.down = false; break;
 
     } 
 })
-
-
-// TODO: convert all pixel values to multiples of the innerWidth at final resizing and positioning
