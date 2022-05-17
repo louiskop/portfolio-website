@@ -2,12 +2,19 @@
 // personality page
 
 // module imports
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 // code imports
 //
 
-function Personality(){
+function Personality(props){
+
+    useEffect(() =>{
+        if(props.click){
+            window.scrollTo(0, props.scrollOffset);
+        }
+    },[]);
+
 
     return (
         <div className="page">

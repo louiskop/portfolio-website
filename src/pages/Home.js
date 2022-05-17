@@ -2,12 +2,18 @@
 // home page
 
 // module imports
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 // code imports
 import me from '../static/me.jpg'
 
-function Home() {
+function Home(props) {
+
+    useEffect(() =>{
+        if(props.click){
+            window.scrollTo(0, props.scrollOffset);
+        }
+    },[]);
 
     return(
         <div className="page">
