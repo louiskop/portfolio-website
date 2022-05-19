@@ -2,14 +2,27 @@
 /* main css file */
 
 /* import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+/* color themes */
+:root {
+
+    /* test theme */
+    --primary60: #FFF503;
+    --secondary30: #38dbff;
+    --callTo10: #ff5d5d;
+
+}
+
+
 
 /* index css */
 body{
     margin: 0;
     padding: 0;
     height: 100vh;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Koulen', cursive;
+    background-color: var(--primary60);
 }
 
 
@@ -36,23 +49,18 @@ canvas {
 
 /* header css */
 .header{
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    
 }
 
 .header p{
-    grid-column: 2/3;
-    grid-row: 1/2;
-    align-self: start;
-    justify-self: center;
     font-size: 0.9rem;
+    text-align: center;
 }
 
 .header ul{
-    grid-column: 1/2;
-    grid-row: 1/2;
-    align-self: start;
-    justify-self: start;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 0;
 }
 
@@ -82,7 +90,7 @@ canvas {
 
 /* home page css */
 #me {
-    height: 100vh;
+    height: 40vh;
     justify-self: center;
 }
 

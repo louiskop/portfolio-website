@@ -1,0 +1,61 @@
+
+.projectViewer {
+    width: 100vw;
+    height: 49vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.projectViewer > * {
+    justify-self: center;
+    align-self: center;
+}
+
+.projectCard {
+    width: 50vw;
+    height: 48vh;
+    display: grid;
+    grid-template-rows: 1fr 15fr;
+    border: 0.3rem solid black
+}
+
+.topBar {
+    background-color: var(--callTo10);
+    overflow-y: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2vw;
+    border-bottom: 0.3rem solid black;
+}
+
+.contentBar {
+    background-color: var(--secondary30);
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr 2fr;
+}
+
+.contentBar h3 {
+    grid-row: 1/2;
+    grid-column: 1/4;
+    align-self: center;
+    justify-self: center;
+}
+
+.contentBar img {
+    height: 35vh;
+    grid-row: 2/6;
+    grid-column: 1/2;
+    align-self: center;
+    justify-self: center;
+}
+
+.contentBar p {
+    grid-row: 2/6;
+    grid-column: 2/4;
+    align-self: center;
+    justify-self: center;
+}
+

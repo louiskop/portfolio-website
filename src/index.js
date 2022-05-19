@@ -10,7 +10,7 @@ import "./css/index.css";
 
 ReactDom.render(
     <BrowserRouter>
-    <Main/>,
+    <Main/>
     </BrowserRouter>,
     document.getElementById("root")
 );

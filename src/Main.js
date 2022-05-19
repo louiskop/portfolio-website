@@ -81,9 +81,6 @@ function Main() {
 
     );
 
-
-    
-
     return(
         <div>
         
@@ -122,5 +119,3 @@ function Main() {
 }
 
 export default Main;
-
-//TODO : add prop to all pages that updates scroll pos if navbar is used

@@ -48,7 +48,7 @@ class Player {
 
     // draw the player on the canvas
     draw(){
-        c.fillStyle = '#4287f5' 
+        c.fillStyle = '#ff5d5d' 
         c.fillRect(this.position.x, this.position.y, this.width, this.height);        
     }
 
@@ -79,7 +79,7 @@ class Platform {
     }
 
     draw(){
-        c.fillStyle = '#FF0000' 
+        c.fillStyle = '#38dbff' 
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 

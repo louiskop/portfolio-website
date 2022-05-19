@@ -1,0 +1,17 @@
+
+.brutButton {
+    background-color: var(--callTo10);
+    height: 7vh;
+    width: 7vw;
+    justify-self: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.3rem 0.3rem 0 black;
+    border: 0.3rem solid black;
+}
+
+.brutButton * {
+    width: 3vw;
+    height: 3vw;
+}
